@@ -68,4 +68,41 @@ report = CommuteReport.new(input)
 
     expect(report.average_commute_time).to eq expected
   end
+
+  it "compares two people's data for a week and determines longest inbound commute" do
+    input = {
+      "Emily" => [
+        {
+          week: 4,
+          day: "Monday",
+          mode: "Walk",
+          inbound: 12,
+          outbound: 15,
+          distance: 0.65
+        },
+        {
+          week: 5,
+          day: "Tuesday",
+          mode: "Walk",
+          inbound: 12,
+          outbound: 15,
+          distance: 0.65
+        }
+      ],
+      "Gerard" => [
+        {
+          week: 4,
+          day: "Wednesday",
+          mode: "Drive",
+          inbound: 14,
+          outbound: 12,
+          distance: 5
+        }
+      ]
+    }
+
+    report = CommuteReport.new(input)
+    expect(report.commute_comparison("Emily", "Gerard", 4)).to eq "Gerard"
+  end
+
 end
