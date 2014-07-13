@@ -1,12 +1,14 @@
-require 'spec_helper'
 require 'commute_parser'
 require 'csv'
 
 describe CommuteParser do
 
-  it "convert commute data to an array of hashes for each person" do
+  it "converts data in a CSV to a hash" do
 
-    input = CSV.read('/Users/paulwenig/gSchoolWork/commute-warm-up/data/test_data.csv')
+    input = CSV.read('./data/sample_data.csv')
+
+    report = CommuteParser.new(input)
+
     expected = {
       "Emily" => [
         {
@@ -37,8 +39,10 @@ describe CommuteParser do
         }
       ]
     }
-
-    commute = CommuteParser.new(input)
-    expect(commute.convert).to eq expected
+    expect(report.convert).to eq expected
   end
+
+
+
+
 end

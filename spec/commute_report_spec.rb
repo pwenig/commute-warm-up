@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'commute_report'
 
-describe CommuteReport do
+describe Report do
   it "can determine a persons inbound commute time for a day and week" do
     input = {
       "Emily" => [
@@ -23,7 +23,7 @@ describe CommuteReport do
         }
       ]
     }
-report = CommuteReport.new(input)
+report = Report.new(input)
 
     expect(report.inbound_commute_time("Emily", 4, "Monday")).to eq 12
 
@@ -62,7 +62,7 @@ report = CommuteReport.new(input)
       ]
     }
 
-    report = CommuteReport.new(input)
+    report = Report.new(input)
 
     expected = (12 + 15 + 12 + 15 + 14 + 12) / 6
 
@@ -101,7 +101,7 @@ report = CommuteReport.new(input)
       ]
     }
 
-    report = CommuteReport.new(input)
+    report = Report.new(input)
     expect(report.commute_comparison("Emily", "Gerard", 4)).to eq "Gerard"
   end
 
